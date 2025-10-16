@@ -28,7 +28,7 @@ fun main() {
         return
     }
 
-    println("'$name' entered. (type '/exit' to escape.")
+    println("'$name' entered. (type '/exit' to escape.)")
 
     try {
         val outputStream = clientSocket.getOutputStream()
@@ -74,6 +74,7 @@ private fun sendMessageLoop(outputStream: OutputStream) {
         val input = readlnOrNull() ?: continue
 
         if (input.equals("/exit", ignoreCase = true)) {
+            sendPacket(outputStream, PacketType.DISCONNECT_REQUEST, "")
             break
         }
 
